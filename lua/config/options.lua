@@ -9,6 +9,9 @@ vim.opt.mouse = ""
 vim.opt.background = "dark"
 vim.g.gruvbox_material_background = "soft"
 
+-- clipboard fix for tmux
+vim.opt.clipboard = "unnamedplus"
+
 -- hard code root path; cwd() versions of key mappings already handle dynamic cwd
 vim.g.root_spec = {
   function()
