@@ -1,49 +1,65 @@
 return {
   {
     "milanglacier/minuet-ai.nvim",
-    event = "InsertEnter",
-    opts = {
-      provider = "openai_compatible",
+    lazy = false,
+    config = function()
+      require("minuet").setup({
+        provider = "openai_compatible",
+        request_timeout = 8,
+        notify = "debug",
+        debug = true,
 
-      request_timeout = 4,
-      auto_suggestion_debounce_delay = 0.4,
-      auto_suggestion_throttle_delay = 0.8,
+        provider_options = {
+          openai_compatible = {
+            api_key = "OPENROUTER_API_KEY",
+            name = "OpenRouter",
+            end_point = "https://openrouter.ai/api/v1/chat/completions",
 
-      n_completions = 1,
+            model = "openrouter/free",
+            stream = false,
 
-      provider_options = {
-        openai_compatible = {
-          api_key = function()
-            return vim.env.SILICONFLOW_API_KEY or "sk-your-siliconflow-key"
-          end,
-          name = "SiliconFlow",
-          end_point = "https://api.siliconflow.cn/v1/chat/completions",
-          model = "Qwen/Qwen2.5-Coder-32B-Instruct",
+            headers = {
+              ["HTTP-Referer"] = "https://github.com/milanglacier/minuet-ai.nvim",
+              ["X-Title"] = "Minuet Neovim",
+            },
 
-          optional = {
-            max_tokens = 256,
-            temperature = 0.2,
+            optional = {
+              -- 512 tokens ensures completion fits alongside reasoning overhead
+              max_tokens = 512,
+              temperature = 0.2,
+
+              -- Disable reasoning token allocation for OpenAI-compatible APIs
+              reasoning_effort = "none",
+            },
+
+            system = {
+              prompt = "You are an expert code autocomplete engine. Complete the user snippet directly. Do not include markdown code blocks, introductory text, or explanations. Respond with ONLY the missing code required to finish the logic.",
+            },
           },
         },
-      },
-    },
+      })
+    end,
   },
 
   {
     "saghen/blink.cmp",
     optional = true,
-    opts = {
-      sources = {
-        default = { "minuet", "lsp", "path", "snippets", "buffer" },
-        providers = {
-          minuet = {
-            name = "minuet",
-            module = "minuet.blink",
-            score_offset = 100,
-            async = true,
-          },
-        },
-      },
-    },
+    opts = function(_, opts)
+      opts.sources = opts.sources or {}
+      opts.sources.default = opts.sources.default or {}
+
+      if not vim.tbl_contains(opts.sources.default, "minuet") then
+        table.insert(opts.sources.default, 1, "minuet")
+      end
+
+      opts.sources.providers = opts.sources.providers or {}
+      opts.sources.providers.minuet = {
+        name = "minuet",
+        module = "minuet.blink",
+        score_offset = 100,
+        async = true,
+        timeout_ms = 6000,
+      }
+    end,
   },
 }

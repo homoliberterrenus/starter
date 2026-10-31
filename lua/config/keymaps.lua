@@ -11,6 +11,11 @@ vim.keymap.set("n", "<leader>ww", "<cmd>w<CR>", { desc = "Save buffer" })
 vim.keymap.set("n", "<leader>wa", "<cmd>wall<CR>", { desc = "Save all buffers" })
 vim.keymap.set("n", "<leader>qw", "<cmd>wall<CR><cmd>qall<CR>", { desc = "Save and quit all buffers" })
 
+-- Force blink.cmp to open completion menu and fetch minuet suggestions
+vim.keymap.set("i", "<A-y>", function()
+  require("blink.cmp").show({ providers = { "minuet" } })
+end, { desc = "Trigger Minuet AI completion" })
+
 -- toggle colorscheme
 local colorschemes = {
   { mode = "light", contrast = "soft", name = "Light" },
