@@ -20,6 +20,23 @@ return {
         },
       },
     },
+    behaviour = {
+      -- Force Avante to wait for your confirmation (co/ct) instead of applying directly
+      auto_apply_diff_after_generation = false,
+
+      -- Automatically set up highlighting and conflict keymaps
+      auto_set_highlight_group = true,
+      auto_set_keymaps = true,
+      support_paste_from_clipboard = false,
+      minimize_diff = true, -- Shows compact diffs rather than whole file replacements
+    },
+
+    -- Ensure native diff integration is enabled
+    diff = {
+      autojump = true,
+      list_opener = "copen",
+      override_timeoutlen = 500,
+    },
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
