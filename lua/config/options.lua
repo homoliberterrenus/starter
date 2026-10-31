@@ -4,3 +4,7 @@
 
 -- no mouse
 vim.opt.mouse = ""
+
+-- fallback startup state for colorscheme
+vim.opt.background = "light"
+vim.g.gruvbox_material_background = "soft"
