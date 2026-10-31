@@ -19,6 +19,11 @@ local colorschemes = {
   { mode = "dark", contrast = "hard", name = "Extra Dark" },
 }
 
+-- lazygit to open at current dir
+vim.keymap.set("n", "<leader>gg", function()
+  Snacks.lazygit({ cwd = vim.fn.expand("%:p:h") })
+end, { desc = "Lazygit (current file)" })
+
 vim.keymap.set("n", "<leader>ux", function()
   -- get current state
   local current_mode = vim.opt.background:get()
