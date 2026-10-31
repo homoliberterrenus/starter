@@ -6,10 +6,6 @@ return {
   ---@module 'avante'
   ---@type avante.Config
   opts = {
-    -- add any opts here
-    -- this file can contain specific instructions for your project
-    instructions_file = "avante.md",
-    -- for example
     provider = "ollama",
     providers = {
       ollama = {
@@ -20,6 +16,7 @@ return {
         extra_request_body = {
           temperature = 0.75,
           max_tokens = 20480,
+          stream = true,
         },
       },
     },
