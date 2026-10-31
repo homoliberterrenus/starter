@@ -6,7 +6,7 @@
 vim.opt.mouse = ""
 
 -- fallback startup state for colorscheme
-vim.opt.background = "light"
+vim.opt.background = "dark"
 vim.g.gruvbox_material_background = "soft"
 
 -- hard code root path; cwd() versions of key mappings already handle dynamic cwd
