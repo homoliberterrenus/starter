@@ -6,6 +6,7 @@ return {
   ---@module 'avante'
   ---@type avante.Config
   opts = {
+    mode = "legacy",
     provider = "ollama",
     providers = {
       ollama = {
