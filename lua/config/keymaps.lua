@@ -3,6 +3,9 @@
 -- Add any additional keymaps here
 
 vim.keymap.set("i", "jk", "<Esc>")
+vim.keymap.set("i", "Jk", "<Esc>")
+vim.keymap.set("i", "jK", "<Esc>")
+vim.keymap.set("i", "JK", "<Esc>")
 
 vim.keymap.set("n", "<leader>ww", "<cmd>w<CR>", { desc = "Save buffer" })
 vim.keymap.set("n", "<leader>wa", "<cmd>wall<CR>", { desc = "Save all buffers" })
