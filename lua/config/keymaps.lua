@@ -57,3 +57,7 @@ vim.keymap.set("n", "<leader>ux", function()
   -- inform user
   vim.notify("Switched to " .. target_cs.name, vim.log.levels.INFO, { title = "Colorscheme" })
 end, { desc = "Cycle colorschemes" })
+
+vim.keymap.set("n", "<leader>mm", function()
+  require("render-markdown").toggle()
+end, { desc = "Toggle markdown rendering" })
