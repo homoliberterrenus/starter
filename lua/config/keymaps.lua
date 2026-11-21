@@ -2,10 +2,10 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-vim.keymap.set("i", "jk", "<Esc>")
-vim.keymap.set("i", "Jk", "<Esc>")
-vim.keymap.set("i", "jK", "<Esc>")
-vim.keymap.set("i", "JK", "<Esc>")
+vim.keymap.set("i", "jk", "<Esc>", { desc = "<Esc>" })
+vim.keymap.set("i", "Jk", "<Esc>", { desc = "<Esc>" })
+vim.keymap.set("i", "jK", "<Esc>", { desc = "<Esc>" })
+vim.keymap.set("i", "JK", "<Esc>", { desc = "<Esc>" })
 
 vim.keymap.set("n", "<leader>wb", "<cmd>w<CR>", { desc = "Save buffer" }) -- write "buffer"
 vim.keymap.set("n", "<leader>wf", "<cmd>w<CR>", { desc = "Save buffer" }) -- write "file"
