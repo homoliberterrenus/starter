@@ -9,6 +9,8 @@ vim.opt.mouse = ""
 vim.opt.background = "dark"
 vim.g.gruvbox_material_background = "soft"
 
+vim.opt.colorcolumn = "80"
+
 -- clipboard fix for tmux
 vim.opt.clipboard = "unnamedplus"
 
