@@ -13,6 +13,11 @@ vim.keymap.set("n", "<leader>wa", "<cmd>wall<CR>", { desc = "Save all buffers" }
 vim.keymap.set("n", "<leader>ww", "<cmd>wall<CR>", { desc = "Save all buffers" }) -- muscle memory
 vim.keymap.set("n", "<leader>qw", "<cmd>wall<CR><cmd>qall<CR>", { desc = "Save and quit all buffers" })
 
+-- lazygit to open at current dir
+vim.keymap.set("n", "<leader>gg", function()
+  Snacks.lazygit({ cwd = vim.fn.expand("%:p:h") })
+end, { desc = "Lazygit (current file)" })
+
 -- toggle colorscheme
 local colorschemes = {
   { mode = "light", contrast = "soft", name = "Light" },
@@ -20,11 +25,6 @@ local colorschemes = {
   { mode = "dark", contrast = "soft", name = "Dark" },
   { mode = "dark", contrast = "hard", name = "Extra Dark" },
 }
-
--- lazygit to open at current dir
-vim.keymap.set("n", "<leader>gg", function()
-  Snacks.lazygit({ cwd = vim.fn.expand("%:p:h") })
-end, { desc = "Lazygit (current file)" })
 
 vim.keymap.set("n", "<leader>ux", function()
   -- get current state
