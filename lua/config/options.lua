@@ -13,8 +13,9 @@ vim.g.gruvbox_material_background = "soft"
 vim.opt.clipboard = "unnamedplus"
 
 -- hard code root path; cwd() versions of key mappings already handle dynamic cwd
+vim.g.code_dir = vim.uv.os_homedir() .. "/code"
 vim.g.root_spec = {
   function()
-    return vim.uv.os_homedir() .. "/code/"
+    return vim.g.code_dir
   end,
 }
