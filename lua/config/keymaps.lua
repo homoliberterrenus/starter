@@ -7,8 +7,10 @@ vim.keymap.set("i", "Jk", "<Esc>")
 vim.keymap.set("i", "jK", "<Esc>")
 vim.keymap.set("i", "JK", "<Esc>")
 
-vim.keymap.set("n", "<leader>ww", "<cmd>w<CR>", { desc = "Save buffer" })
-vim.keymap.set("n", "<leader>wa", "<cmd>wall<CR>", { desc = "Save all buffers" })
+vim.keymap.set("n", "<leader>wb", "<cmd>w<CR>", { desc = "Save buffer" }) -- write "buffer"
+vim.keymap.set("n", "<leader>wf", "<cmd>w<CR>", { desc = "Save buffer" }) -- write "file"
+vim.keymap.set("n", "<leader>wa", "<cmd>wall<CR>", { desc = "Save all buffers" }) -- write "all"
+vim.keymap.set("n", "<leader>ww", "<cmd>wall<CR>", { desc = "Save all buffers" }) -- muscle memory
 vim.keymap.set("n", "<leader>qw", "<cmd>wall<CR><cmd>qall<CR>", { desc = "Save and quit all buffers" })
 
 -- Force blink.cmp to open completion menu and fetch minuet suggestions
