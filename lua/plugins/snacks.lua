@@ -18,6 +18,27 @@ local recent = function(dir)
   return { filter = { cwd = dir } }
 end
 
+local function sibling_edge(last)
+  return function(picker)
+    local list = picker.list
+    local cur = list:get(list.cursor)
+    if not cur or not cur.parent then
+      return
+    end
+    local step = last and 1 or -1
+    local idx = list.cursor
+    for i = list.cursor + step, last and list:count() or 1, step do
+      local item = list:get(i)
+      if item and item.parent == cur.parent then
+        idx = i
+      elseif item and item.parent ~= cur.parent and item.file:find(cur.parent.file, 1, true) ~= 1 then
+        break
+      end
+    end
+    list:move(idx, true)
+  end
+end
+
 local function map(lhs, picker, root, desc, opts)
   return { lhs, pick(picker, root, opts), mode = { "n", "x" }, desc = desc }
 end
@@ -46,6 +67,18 @@ return {
         explorer = {
           hidden = true,
           ignored = false, -- Set to false to respect .gitignore in explorer
+          actions = {
+            sibling_first = sibling_edge(false),
+            sibling_last = sibling_edge(true),
+          },
+          win = {
+            list = {
+              keys = {
+                ["K"] = "sibling_first",
+                ["J"] = "sibling_last",
+              },
+            },
+          },
         },
         grep = {
           hidden = true,
