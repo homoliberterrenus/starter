@@ -11,7 +11,7 @@ vim.g.gruvbox_material_background = "soft"
 
 vim.opt.colorcolumn = "80"
 
--- clipboard fix for tmux
+-- yank to system clipboard, also over ssh/tmux (LazyVim skips this over ssh)
 vim.opt.clipboard = "unnamedplus"
 
 -- hard code root path; cwd() versions of key mappings already handle dynamic cwd
