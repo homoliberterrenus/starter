@@ -15,6 +15,35 @@ vim.keymap.set("n", "<leader>qw", "<cmd>wall<CR><cmd>qall<CR>", { desc = "Save a
 
 vim.keymap.set("n", "<leader>pf", "<cmd>put =expand('%:p')<CR>", { desc = "Put full file path" })
 
+-- `:w !sudo tee %` can't prompt for a password in nvim; ask for it here instead
+local function sudo_write()
+  local file = vim.api.nvim_buf_get_name(0)
+  if file == "" then
+    return vim.notify("Buffer has no file name", vim.log.levels.ERROR)
+  end
+
+  local password = ""
+  if vim.system({ "sudo", "-n", "true" }):wait().code ~= 0 then
+    password = vim.fn.inputsecret("[sudo] password: ")
+    if password == "" then
+      return
+    end
+  end
+
+  local tmp = vim.fn.tempname()
+  vim.cmd("keepalt silent write! " .. vim.fn.fnameescape(tmp))
+  local result = vim.system({ "sudo", "-S", "-p", "", "cp", tmp, file }, { stdin = password .. "\n" }):wait()
+  os.remove(tmp)
+
+  if result.code ~= 0 then
+    return vim.notify(vim.trim(result.stderr), vim.log.levels.ERROR, { title = "Sudo write" })
+  end
+  vim.bo.modified = false
+  vim.notify("Wrote " .. file, vim.log.levels.INFO, { title = "Sudo write" })
+end
+
+vim.keymap.set("n", "<leader>w!", sudo_write, { desc = "Save buffer with sudo" })
+
 -- lazygit to open at current dir
 vim.keymap.set("n", "<leader>gg", function()
   Snacks.lazygit({ cwd = vim.fn.expand("%:p:h") })
