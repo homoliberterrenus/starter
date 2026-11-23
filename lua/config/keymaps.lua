@@ -15,6 +15,9 @@ vim.keymap.set("n", "<leader>qw", "<cmd>wall<CR><cmd>qall<CR>", { desc = "Save a
 
 vim.keymap.set("n", "<leader>pf", "<cmd>put =expand('%:p')<CR>", { desc = "Put full file path" })
 
+-- muscle memory - learn the z* keys!
+vim.keymap.set("n", "<leader>fo", "zR", { desc = "Open all folds" })
+
 -- `:w !sudo tee %` can't prompt for a password in nvim; ask for it here instead
 local function sudo_write()
   local file = vim.api.nvim_buf_get_name(0)
