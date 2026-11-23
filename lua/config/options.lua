@@ -11,6 +11,8 @@ vim.g.gruvbox_material_background = "soft"
 
 vim.opt.colorcolumn = "80"
 
+vim.opt.wrap = true
+
 -- yank to system clipboard, also over ssh/tmux (LazyVim skips this over ssh)
 vim.opt.clipboard = "unnamedplus"
 
