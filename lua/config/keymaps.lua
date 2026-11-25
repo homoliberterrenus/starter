@@ -13,6 +13,9 @@ vim.keymap.set("n", "<leader>wa", "<cmd>wall<CR>", { desc = "Save all buffers" }
 vim.keymap.set("n", "<leader>ww", "<cmd>wall<CR>", { desc = "Save all buffers" }) -- muscle memory
 vim.keymap.set("n", "<leader>qw", "<cmd>wall<CR><cmd>qall<CR>", { desc = "Save and quit all buffers" })
 
+vim.keymap.set("n", "<leader>rr", "<cmd>edit<CR>", { desc = "Reload buffer" })
+vim.keymap.set("n", "<leader>r!", "<cmd>edit!<CR>", { desc = "Reload buffer! (discard changes)" })
+
 vim.keymap.set("n", "<leader>pf", "<cmd>put =expand('%:p')<CR>", { desc = "Put full file path" })
 
 -- muscle memory - learn the z* keys!
