@@ -16,6 +16,10 @@ vim.keymap.set("n", "<leader>qw", "<cmd>wall<CR><cmd>qall<CR>", { desc = "Save a
 vim.keymap.set("n", "<leader>rr", "<cmd>edit<CR>", { desc = "Reload buffer" })
 vim.keymap.set("n", "<leader>r!", "<cmd>edit!<CR>", { desc = "Reload buffer! (discard changes)" })
 
+vim.keymap.set("n", "<leader>rf", function()
+  require("config.cleanup").run()
+end, { desc = "Reformat buffer (whitespace cleanup)" })
+
 vim.keymap.set("n", "<leader>pf", "<cmd>put =expand('%:p')<CR>", { desc = "Put full file path" })
 
 -- muscle memory - learn the z* keys!
