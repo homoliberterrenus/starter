@@ -8,6 +8,9 @@ end
 
 return {
   "MagicDuck/grug-far.nvim",
+  opts = {
+    engines = { ripgrep = { extraArgs = "--glob=!.git/" } },
+  },
   keys = {
     {
       "<leader>sr",
