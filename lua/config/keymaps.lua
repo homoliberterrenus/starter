@@ -7,6 +7,10 @@ vim.keymap.set("i", "Jk", "<Esc>", { desc = "<Esc>" })
 vim.keymap.set("i", "jK", "<Esc>", { desc = "<Esc>" })
 vim.keymap.set("i", "JK", "<Esc>", { desc = "<Esc>" })
 
+-- free up <leader>l as a group
+vim.keymap.del("n", "<leader>l")
+vim.keymap.set("n", "<leader>ll", "<cmd>Lazy<CR>", { desc = "Lazy" })
+
 vim.keymap.set("n", "<leader>wb", "<cmd>w<CR>", { desc = "Save buffer" }) -- write "buffer"
 vim.keymap.set("n", "<leader>wf", "<cmd>w<CR>", { desc = "Save buffer" }) -- write "file"
 vim.keymap.set("n", "<leader>wa", "<cmd>wall<CR>", { desc = "Save all buffers" }) -- write "all"
