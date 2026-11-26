@@ -104,3 +104,16 @@ end, { desc = "Cycle colorschemes" })
 vim.keymap.set("n", "<leader>mm", function()
   require("render-markdown").toggle()
 end, { desc = "Toggle markdown rendering" })
+
+-- quickfix: jump by file, mirroring ]q / [q
+local function qf_jump(cmd)
+  return function()
+    local ok, err = pcall(vim.cmd[cmd])
+    if not ok then
+      vim.notify(err, vim.log.levels.ERROR)
+    end
+  end
+end
+
+vim.keymap.set("n", "]Q", qf_jump("cnfile"), { desc = "Next Quickfix File" })
+vim.keymap.set("n", "[Q", qf_jump("cpfile"), { desc = "Prev Quickfix File" })
