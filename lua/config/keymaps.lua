@@ -59,9 +59,12 @@ end
 vim.keymap.set("n", "<leader>w!", sudo_write, { desc = "Save buffer with sudo" })
 
 -- lazygit to open at current dir
-vim.keymap.set("n", "<leader>gg", function()
+local function lazygit_open()
   Snacks.lazygit({ cwd = vim.fn.expand("%:p:h") })
-end, { desc = "Lazygit (current file)" })
+end
+
+vim.keymap.set("n", "<leader>lg", lazygit_open, { desc = "Lazygit (current file)" })
+vim.keymap.set("n", "<leader>gg", lazygit_open, { desc = "Lazygit (current file)" }) -- alias
 
 -- toggle colorscheme
 local colorschemes = {
