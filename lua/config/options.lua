@@ -17,7 +17,19 @@ vim.opt.wrap = true
 vim.opt.clipboard = "unnamedplus"
 
 -- hard code root path; cwd() versions of key mappings already handle dynamic cwd
-vim.g.code_dir = vim.uv.os_homedir() .. "/code"
+local function projects_dir()
+  local home = vim.uv.os_homedir()
+  if vim.fn.executable("xdg-user-dir") == 0 then
+    return home
+  end
+  local dir = vim.trim(vim.fn.system({ "xdg-user-dir", "PROJECTS" }))
+  if vim.v.shell_error ~= 0 or dir == "" then
+    return home
+  end
+  return dir
+end
+
+vim.g.code_dir = projects_dir()
 vim.g.root_spec = {
   function()
     return vim.g.code_dir
